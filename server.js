@@ -21,6 +21,9 @@ app.use('/',root_route);
 const upload_route = require('./routes/upload');
 app.use('/upload',upload_route);
 
+const video_route = require('./routes/video');
+app.use('/video',video_route);
+
 app.listen(PORT,()=>{
     console.log(`Starting Server on port ${PORT}`);
     console.log(`http://localhost:${PORT}/`);

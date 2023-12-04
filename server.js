@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 const body_parser = require('body-parser');
-const mongoose = require('mongoose');
+
+var mongo_util = require('./mongo_utils');
 
 dotenv.config();
 
@@ -13,7 +14,7 @@ app.set('view engine','ejs');
 app.use(express.static("public"));
 app.use(body_parser.urlencoded({extended:true}));
 
-mongoose.connect(`mongodb+srv://jakepaul:${process.env.APIKEY}@cluster0.v4uvfyk.mongodb.net/?retryWrites=true&w=majority`);
+mongo_util.connectToServer();
 
 const root_route = require('./routes/root');
 app.use('/',root_route);

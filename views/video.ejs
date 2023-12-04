@@ -1,18 +1,24 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Video</title>
-        <style>
-            body {
-                margin: 40px auto;
-                max-width: 650px;
-                background-color: #444;
-            }
-        </style>
-    </head>
-    <body>
-        <video id="videoPlayer" width="650" controls muted="muted" autoplay>
-            <source src="/video/play" type="video/mp4" />
-          </video>
-    </body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 40px auto;
+        background-color: #242323;
+        max-width: 650px;
+        line-height: 1.6;
+        font-size: 18px;
+        font-family: "Courier New", Courier, monospace;
+        color: #242323;
+        padding: 0 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <video id="videoPlayer" width="850" height="500" controls muted="muted" autoplay>
+      <source src="/video/download" type="video/mp4" />
+    </video>
 </html>

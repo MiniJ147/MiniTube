@@ -14,7 +14,7 @@ app.set('view engine','ejs');
 app.use(express.static("public"));
 app.use(body_parser.urlencoded({extended:true}));
 
-mongo_util.connectToServer();
+mongo_util.connect_to_server();
 
 const root_route = require('./routes/root');
 app.use('/',root_route);

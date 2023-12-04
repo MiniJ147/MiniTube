@@ -8,7 +8,7 @@ const url = `mongodb+srv://jakepaul:${process.env.APIKEY}@cluster0.v4uvfyk.mongo
 var _client;
 
 module.exports = {
-    connectToServer: async function() {
+    connect_to_server: async function() {
       await MongoClient.connect( url, {}).then(client=>{
         console.log('connection sucessful');
         _client = client;

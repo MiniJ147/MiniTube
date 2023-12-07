@@ -9,13 +9,13 @@ var _client;
 
 module.exports = {
     connect_to_server: async function() {
-      await MongoClient.connect( url, {}).then(client=>{
-        console.log('connection sucessful');
-        _client = client;
-      }).catch(err=>{
-        console.log(err);
-        _client = 0;
-      });
+        await MongoClient.connect( url, {}).then(client=>{
+            console.log('connection sucessful');
+            _client = client;
+        }).catch(err=>{
+            console.log(err);
+            _client = 0;
+        });
     },
     
     get_client: function(){

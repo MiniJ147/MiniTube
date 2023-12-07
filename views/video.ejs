@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>MiniTube</title>
+    <script src='js/video_search.js'></script>
     <style>
       body {
         margin: 40px auto;
@@ -18,7 +19,7 @@
     </style>
   </head>
   <body>
-    <video id="videoPlayer" width="850" height="500" controls muted="muted" autoplay>
-      <source src="/video/download" type="video/mp4" />
+    <video id="video_player" width="850" height="500" controls muted="muted" autoplay>
+        <source id='video_source' src="" type="video/mp4" />
     </video>
 </html>

@@ -10,12 +10,12 @@ dotenv.config();
 
 const PORT = process.env.PORT;
 
+mongo_util.connect_to_server(); //connecting to mongodb
+
 //setting express settings
 app.set('view engine','ejs');
 app.use(express.static("public"));
 app.use(body_parser.urlencoded({extended:true}));
-
-mongo_util.connect_to_server(); //connecting to mongodb
 
 //setting up routes
 const root_route = require('./routes/root');
@@ -28,7 +28,7 @@ const video_route = require('./routes/video');
 app.use('/video',video_route);
 
 //starting server
-app.listen(PORT,()=>{
+app.listen(PORT,async ()=>{
     console.log(`Starting Server on port ${PORT}`);
     console.log(`http://localhost:${PORT}/`);
 })

@@ -3,6 +3,7 @@
     <head>
         <title>MiniTube</title>
         <link rel="stylesheet" href="css/stylesheet.css">
+        <script src="js/homepage.js"></script>
     </head>
     <body>
         <h1>Welcome to miniTube</h1>
@@ -15,6 +16,14 @@
                 <input type="search" id="video_search" name="video_search">
                 <input type="submit">
             </form>
+        </div>
+        <div id="video_list">
+            <!--FORGIVE ME!-->
+            <%video_list.forEach((v)=>{%>
+                <div onclick = <%=`send_to_video("${v.filename}")`%>>
+                    <%=v.filename%>
+                </div>
+            <%})%>
         </div>
     </body>
 </html>

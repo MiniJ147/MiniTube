@@ -7,16 +7,6 @@
     </head>
     <body>
         <h1>Welcome to miniTube</h1>
-        <div>
-            Upload Video
-            <form action="/upload" method="get">
-                <button id="upload">Upload</button>
-            </form>
-            <form action="/video" method="get">
-                <input type="search" id="video_search" name="video_search">
-                <input type="submit">
-            </form>
-        </div>
         <div id="video_list">
             <!--FORGIVE ME!-->
             <%video_list.forEach((v)=>{%>

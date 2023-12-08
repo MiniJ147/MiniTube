@@ -1,7 +1,13 @@
 console.log('running');
 window.onload = ()=>{
     const search_param = new URLSearchParams(window.location.search)
-    const query = search_param.get('video_search');
+    let query = {};
+
+    for(const value of search_param.keys()){
+        query[value] = search_param.get(value);
+    }
+
+    console.log(query);
     
     let video = document.getElementById('video_player');
     if(!video){
@@ -9,5 +15,5 @@ window.onload = ()=>{
     }
 
     //adjusting to the query
-    video.setAttribute('src',`/video/download?video_search=${query}`);
+    video.setAttribute('src',`/video/download?channel=${query.channel}&video=${query.video}`);
 }

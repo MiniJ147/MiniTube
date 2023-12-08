@@ -18,10 +18,25 @@ router.post('/submit', upload.single('file'), async (req,res)=>{
     const file_path = path.join(__dirname,'../uploads/');
 
     const db = mongo_util.get_client().db('Videos');
+    const metadata_collection = db.collection('metadata');
+
+    const db_meta_data = await metadata_collection.findOne({});
     
+    let video_id = db_meta_data.video_id+1;
+    const result = await metadata_collection .updateOne({},
+        {
+            $set:{video_id:video_id}
+        },
+        { upsert: false});
+    
+    video_id = video_id.toString();
+    //console.log(result);
+
     //setting up streams
     const bucket = new mongodb.GridFSBucket(db);
-    const video_upload_stream = bucket.openUploadStream(req.body.name);
+    const video_upload_stream = bucket.openUploadStream(req.body.name,{
+        metadata: {channel_id:"XXX" ,video_id:video_id}
+    });
     const video_read_stream = fs.createReadStream(file_path+file_name);
     video_read_stream.pipe(video_upload_stream);
 

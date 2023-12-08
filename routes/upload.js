@@ -5,6 +5,8 @@ const {upload,remove_file} = require('../utils/file_utils');
 const router = express.Router();
 const path = require('path'); 
 
+
+var LOG = require('../utils/logger');
 var mongo_util = require('../utils/mongo_utils');
 
 router.get('/',async (req,res)=>{
@@ -13,7 +15,7 @@ router.get('/',async (req,res)=>{
 
 router.post('/submit', upload.single('file'), async (req,res)=>{
     const file_name = req.body.name+'.mp4';
-    console.log(file_name);
+    LOG(__filename,file_name);
 
     const file_path = path.join(__dirname,'../uploads/');
 
@@ -30,7 +32,7 @@ router.post('/submit', upload.single('file'), async (req,res)=>{
         { upsert: false});
     
     video_id = video_id.toString();
-    //console.log(result);
+    LOG(__filename,result);
 
     //setting up streams
     const bucket = new mongodb.GridFSBucket(db);

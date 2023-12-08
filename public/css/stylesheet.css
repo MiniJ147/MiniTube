@@ -1,5 +1,16 @@
 body{
     background-color: #29283323;
+    margin-left: 10px; 
+    margin-right: 30px;
+}
+
+#top_bar{
+    display: flex; 
+    justify-content: space-between;
+}
+
+#top_bar > form{
+    transform:translateY(35%);
 }
 
 #video_list{

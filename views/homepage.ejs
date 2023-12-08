@@ -6,17 +6,19 @@
         <script src="js/homepage.js"></script>
     </head>
     <body>
-        <h1>Welcome to miniTube</h1>
-        <div>
-            Upload Video
+        <div id="top_bar">
             <form action="/upload" method="get">
+                Upload Video
                 <button id="upload">Upload</button>
             </form>
+            <h1>MiniTube</h1>
             <form action="/video" method="get">
+                Search:
                 <input type="search" id="video_search" name="video_search">
                 <input type="submit">
             </form>
         </div>
+        <h2>Videos:</h2>
         <div id="video_list">
             <!--FORGIVE ME!-->
             <%video_list.forEach((v)=>{%>

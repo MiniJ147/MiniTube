@@ -2,11 +2,12 @@ const express = require("express");
 const router = express.Router();
 const mongodb = require('mongodb');
 
+var LOG = require('../utils/logger');
 var mongo_util = require('../utils/mongo_utils');
 
 router.get("/", async (req, res)=>{
     const file_request = req.query.video_search;
-    console.log('File request: '+file_request);
+    LOG('/','File request: '+file_request);
 
     //empty search query
     if(file_request == ''){
@@ -17,7 +18,7 @@ router.get("/", async (req, res)=>{
     const db = mongo_util.get_client().db('Videos');
     const videos = await db.collection('fs.files').find({filename:file_request}).toArray();
 
-    console.log(videos);
+    LOG('/',videos);
 
     res.render('video_display',{
         video_list: videos //video query
@@ -28,10 +29,10 @@ router.get('/watch', async (req,res)=>{
     const channel_id = req.query.channel;
     const video_id = req.query.video;
 
-    console.log(channel_id,video_id);
+    LOG(__filename,channel_id+' '+video_id);
 
     const db = mongo_util.get_client().db('Videos');
-    const file = await db.collection('fs.files').findOne({},{metadata:{channel_id:channel_id,video_id:video_id}});
+    const file = await db.collection('fs.files').findOne({"metadata.channel_id":channel_id,"metadata.video_id":video_id});
 
     res.render('video',{desc:file.metadata.desc});
 })
@@ -47,13 +48,13 @@ router.get("/download", async function (req, res) {
 
         //fetching request
         const request = req.query;
-        console.log('request',request.channel,request.video);
+        LOG(__filename,request.channel+' '+request.video);
 
         //finding file in database
-        const db = mongo_util.get_client().db('Videos'); // await db.collection('fs.files').findOne({metadata:{channel_id:request.channel,video_id:request.video}});
-        const file = await db.collection('fs.files').findOne({},{metadata:{channel_id:request.channel,video_id:request.video}});
+        const db = mongo_util.get_client().db('Videos');
+        const file = await db.collection('fs.files').findOne({"metadata.channel_id":request.channel,"metadata.video_id":request.video});
 
-        console.log(file);
+        LOG(__filename,file);
 
         //error handling
         if(!file){

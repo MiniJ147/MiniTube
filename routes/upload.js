@@ -9,7 +9,7 @@ var mongo_util = require('../utils/mongo_utils');
 
 router.get('/',async (req,res)=>{
     res.render('upload',{});
-})
+}); 
 
 router.post('/submit', upload.single('file'), async (req,res)=>{
     const file_name = req.body.name+'.mp4';

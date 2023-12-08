@@ -3,6 +3,7 @@ window.onload = ()=>{
     const search_param = new URLSearchParams(window.location.search)
     let query = {};
 
+    //grabbing query
     for(const value of search_param.keys()){
         query[value] = search_param.get(value);
     }

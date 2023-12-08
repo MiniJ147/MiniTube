@@ -29,7 +29,7 @@ router.get('/watch', async (req,res)=>{
     const channel_id = req.query.channel;
     const video_id = req.query.video;
 
-    LOG(__filename,channel_id+' '+video_id);
+    LOG(__filename,channel_id+' '+video_id,0);
 
     const db = mongo_util.get_client().db('Videos');
     const file = await db.collection('fs.files').findOne({"metadata.channel_id":channel_id,"metadata.video_id":video_id});
@@ -48,7 +48,7 @@ router.get("/download", async function (req, res) {
 
         //fetching request
         const request = req.query;
-        LOG(__filename,request.channel+' '+request.video);
+        LOG(__filename,request.channel+' '+request.video,0);
 
         //finding file in database
         const db = mongo_util.get_client().db('Videos');

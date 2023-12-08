@@ -29,7 +29,11 @@ router.get('/watch', async (req,res)=>{
     const video_id = req.query.video;
 
     console.log(channel_id,video_id);
-    res.render('video',{});
+
+    const db = mongo_util.get_client().db('Videos');
+    const file = await db.collection('fs.files').findOne({},{metadata:{channel_id:channel_id,video_id:video_id}});
+
+    res.render('video',{desc:file.metadata.desc});
 })
 
 router.get("/download", async function (req, res) {
@@ -46,8 +50,8 @@ router.get("/download", async function (req, res) {
         console.log('request',request.channel,request.video);
 
         //finding file in database
-        const db = mongo_util.get_client().db('Videos');
-        const file = await db.collection('fs.files').findOne({metadata:{channel_id:request.channel,video_id:request.video}});
+        const db = mongo_util.get_client().db('Videos'); // await db.collection('fs.files').findOne({metadata:{channel_id:request.channel,video_id:request.video}});
+        const file = await db.collection('fs.files').findOne({},{metadata:{channel_id:request.channel,video_id:request.video}});
 
         console.log(file);
 

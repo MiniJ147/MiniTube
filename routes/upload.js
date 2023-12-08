@@ -35,7 +35,7 @@ router.post('/submit', upload.single('file'), async (req,res)=>{
     //setting up streams
     const bucket = new mongodb.GridFSBucket(db);
     const video_upload_stream = bucket.openUploadStream(req.body.name,{
-        metadata: {channel_id:"XXX" ,video_id:video_id}
+        metadata: {channel_id:"XXX" ,video_id:video_id, desc:req.body.desc}
     });
     const video_read_stream = fs.createReadStream(file_path+file_name);
     video_read_stream.pipe(video_upload_stream);

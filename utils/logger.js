@@ -8,9 +8,7 @@ var LOG = function(msg) {return};
 if(FLAG==1){
     console.log("=============================\n|CURRENTLY INSIDE DEBUG MODE|\n=============================");
     
-    LOG = function(file_name,msg,active=1){
-        if(active==0) return;
-
+    LOG = function(file_name,...msg){
         //parsing file name
         for(let i=file_name.length-1; i>=0;i--){
             if(file_name[i]=='\\'){
